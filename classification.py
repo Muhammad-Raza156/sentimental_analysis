@@ -1,13 +1,16 @@
 import cohere
+import streamlit as st
 from cohere import ClassifyExample
 from models import ProductReviews
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
+# get api key from .env
+cohere_api_key = st.secrets["COHERE_API_KEY"]
 
-COHERE_API_KEY = os.getenv("COHERE_API_KEY")
-co = cohere.ClientV2(COHERE_API_KEY)
+# COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+co = cohere.ClientV2(cohere_api_key)
 
 def classify_sentiment(product_reviews: ProductReviews):
     examples=[ClassifyExample(text="The order came 5 days early", label="positive"), 

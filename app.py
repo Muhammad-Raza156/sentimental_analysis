@@ -18,49 +18,20 @@ reviews = []
 # This loop is replaced with a condition to take reviews one at a time
 review = st.text_input("Please enter the review below", key="unique_review_input")
 
-submit_button_html = """
-<div style="display: flex; justify-content: center; margin-top: 10px;">
-    <button style="
-        background-color: #4CAF50;
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        padding: 10px 20px;
-        cursor: pointer;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    ">Submit</button>
-</div>
-"""
-
 # When the "Submit" button is clicked, append the review and reset the input field
 if review:
     reviews.append(review)
     st.success(f"Review added: {review}")
 
-if st.markdown(submit_button_html, unsafe_allow_html=True):
-    if reviews:
-        st.write("All reviews submitted, now you can predict sentiment.")
-    else:
-        st.error("Please enter at least one review")
+# if st.button("Submit"):
+#     if reviews:
+#         st.write("All reviews submitted, now you can predict sentiment.")
+#     else:
+#         st.error("Please enter at least one review")
 
-predict_button_html = """
-<div style="display: flex; justify-content: center; margin-top: 10px;">
-    <button style="
-        background-color: #2196F3;
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        padding: 10px 20px;
-        cursor: pointer;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    ">Predict Sentiment</button>
-</div>
-"""
 
 # Predict sentiment when the "Predict Sentiment" button is pressed
-if st.markdown(predict_button_html, unsafe_allow_html=True):
+if st.button("Predict Sentiment"):
     if reviews:
         sentiment = predict_sentiment(reviews)
         st.session_state['sentiment'] = sentiment

@@ -34,9 +34,8 @@ if review:
 if st.button("Predict Sentiment"):
     if reviews:
         sentiment = predict_sentiment(reviews)
-        st.session_state['sentiment'] = sentiment
         # Display the sentiment analysis results
-        for result in st.session_state['sentiment']:
+        for result in sentiment:
             st.subheader(f"Review: {result['review']}")
             # Determine the color based on the sentiment
             if result["sentiment"] == "positive":
